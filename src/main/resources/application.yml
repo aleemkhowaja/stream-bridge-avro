@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    stream:
+#      function:
+#        definition: sendMessage;
+      kafka:
+        binder:
+          configuration:
+            schema.registry.url: http://192.168.1.101:8081
+        bindings:
+          supplier-out-0:
+            producer:
+              configuration:
+                value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+                schema.registry.url: http://192.168.1.101:8081
+      bindings:
+        supplier-out-0:
+          destination: sensor-1
+#          producer:
+#            use-native-encoding: true
